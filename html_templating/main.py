@@ -59,86 +59,21 @@ def main():
     pip_struct = {
         "content": [{
             "location": "centralus",
-            "method": "Dynamic",
-            "name": "pkripuwxeqceipz",
-            "pip_type": "networkInterfaces",
-            "sku": "Basic",
+            "method": "Static",
+            "name": "a4bad379-7edf-40d2-8bc6-00251fbe4a18",
+            "pip_type": "loadBalancers",
+            "sku": "Standard",
             "state": "Succeeded",
             "tags": {
-                "environment": "dev",
-                "pipeline": "azure-windows-image"
+                "aks-managed-cluster-name": "aks-shared-edo-dev-d1da",
+                "aks-managed-cluster-rg": "rg-shared-edo-dev-d1da",
+                "aks-managed-type": "aks-slb-managed-outbound-ip",
+                "environment": "main",
+                "project": "shared-edo",
+                "terraform": "true"
             },
             "type": "Microsoft.Network/publicIPAddresses"
-        },
-            {
-                "location": "centralus",
-                "method": "Dynamic",
-                "name": "pkripgxrn3indb2",
-                "pip_type": "networkInterfaces",
-                "sku": "Basic",
-                "state": "Succeeded",
-                "tags": {
-                    "environment": "dev",
-                    "pipeline": "azure-windows-image"
-                },
-                "type": "Microsoft.Network/publicIPAddresses"
-            },
-            {
-                "location": "centralus",
-                "method": "Dynamic",
-                "name": "pkripsq3p92unr2",
-                "pip_type": "networkInterfaces",
-                "sku": "Basic",
-                "state": "Succeeded",
-                "tags": {
-                    "environment": "dev",
-                    "pipeline": "azure-windows-image"
-                },
-                "type": "Microsoft.Network/publicIPAddresses"
-            },
-            {
-                "location": "centralus",
-                "method": "Dynamic",
-                "name": "pkripj25un5egep",
-                "pip_type": "networkInterfaces",
-                "sku": "Basic",
-                "state": "Succeeded",
-                "tags": {
-                    "environment": "dev",
-                    "pipeline": "azure-linux-image"
-                },
-                "type": "Microsoft.Network/publicIPAddresses"
-            },
-            {
-                "location": "centralus",
-                "method": "Dynamic",
-                "name": "pkriprdezqxdzf1",
-                "pip_type": "networkInterfaces",
-                "sku": "Basic",
-                "state": "Succeeded",
-                "tags": {
-                    "environment": "dev",
-                    "pipeline": "azure-linux-image"
-                },
-                "type": "Microsoft.Network/publicIPAddresses"
-            },
-            {
-                "location": "centralus",
-                "method": "Static",
-                "name": "a4bad379-7edf-40d2-8bc6-00251fbe4a18",
-                "pip_type": "loadBalancers",
-                "sku": "Standard",
-                "state": "Succeeded",
-                "tags": {
-                    "aks-managed-cluster-name": "aks-shared-edo-dev-d1da",
-                    "aks-managed-cluster-rg": "rg-shared-edo-dev-d1da",
-                    "aks-managed-type": "aks-slb-managed-outbound-ip",
-                    "environment": "main",
-                    "project": "shared-edo",
-                    "terraform": "true"
-                },
-                "type": "Microsoft.Network/publicIPAddresses"
-            }
+        }
         ]
     }
 

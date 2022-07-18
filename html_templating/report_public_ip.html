@@ -2,25 +2,30 @@
 
 {% block message_body %}
 
-<table class="table table-bordered table-condensed">
-    {% for result in content %}
-    {% if 'public_ips' in result %}
-    <tr>
-        <td class="col-md-2"><b>Public IPs</b></td>
-        <td class="col-md-10"><i>Resource Group,</i> <b>{{result['rg']}} - {{result['location']}}</b></td>
-    </tr>
-    {% for ips in result['public_ips'] %}
-    <tr>
-        <td class="col-md-2"><i>{{ips['name']}}</i>, ({{ips['pip_type'] or ips["type"]}})</td>
-        <td class="col-md-10">
-            {% for tag in ips["tags"]|sort(case_sensitive=False) %}
-            <i>{{ tag }}</i>:&nbsp;<b>{{ ips["tags"][tag] }}</b><br/>
-            {% endfor %}
-        </td>
-    </tr>
-    {% endfor %}
-    {% endif %}
-    {% endfor %}
-</table>
+    <table class="table table-bordered table-condensed">
+        {% for result in content %}
+            {% if 'public_ips' in result %}
+                <tr>
+                    <td class="col-md-2"><b>Public IPs</b></td>
+                    <td class="col-md-10"><i>Resource Group,</i> <b>{{ result['rg'] }} - {{ result['location'] }}</b>
+                    </td>
+                </tr>
+                {% for ips in result['public_ips'] %}
+                    <tr>
+                        <td class="col-md-2"><i>{{ ips['name'] }}</i>, ({{ ips['pip_type'] or ips["type"] }})</td>
+                        <td class="col-md-10">
+                            {% for tag in ips["tags"]|sort(case_sensitive=False) %}
+                                <i>{{ tag }}</i>:&nbsp;<b>{{ ips["tags"][tag] }}</b><br/>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td class="col-md-12"><b>No Public IPs</b></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
 
 {% endblock %}
