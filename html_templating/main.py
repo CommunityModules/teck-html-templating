@@ -55,21 +55,17 @@ def main():
             }
         }
     }
-
     pip_struct = {
         "content": [{
             "location": "centralus",
             "method": "Static",
-            "name": "a4bad379-7edf-40d2-8bc6-00251fbe4a18",
+            "name": "ffffffff-0000-ffff-0000-ffffffffffff",
             "pip_type": "loadBalancers",
             "sku": "Standard",
             "state": "Succeeded",
             "tags": {
-                "aks-managed-cluster-name": "aks-shared-edo-dev-d1da",
-                "aks-managed-cluster-rg": "rg-shared-edo-dev-d1da",
-                "aks-managed-type": "aks-slb-managed-outbound-ip",
-                "environment": "main",
-                "project": "shared-edo",
+                "environment": "development",
+                "project": "shared",
                 "terraform": "true"
             },
             "type": "Microsoft.Network/publicIPAddresses"
