@@ -1,0 +1,42 @@
+{% extends "templates/base.html" %}
+
+{% block message_body %}
+
+    <h1 class="display-3">Suncor Cloud Reports</h1>
+
+    {% if 'reports' in content %}
+        {% for report in content['reports'] %}
+
+            <h3>{{ report['name'] }}</h3>
+
+            <table class="table table-bordered table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">File</th>
+                    <th scope="col">Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for page in report["pages"] %}
+                    <tr>
+                        <th scope="row">
+                            <a href="{{ page["path"] }}">{{ page["name"] }}</a>
+                        </th>
+                        <td>
+                            {{ page["modified"].strftime("%B %d %Y, %H:%M:%S") }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th scope="row" colspan="12">
+                        &nbsp;<a href="{{ report["root"] }}">older reports...</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    {% else %}
+        <h1>No Reports</h1>
+    {% endif %}
+
+{% endblock %}

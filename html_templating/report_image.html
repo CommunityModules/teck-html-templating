@@ -1,0 +1,48 @@
+{% extends "templates/base.html" %}
+
+{% block message_body %}
+
+    <table class="table table-bordered table-condensed">
+        <thead>
+        <tr class="bg-dark text-white">
+            <th scope="col">Name</th>
+            <th scope="col">Shared Image</th>
+            <th scope="col">OS</th>
+            <th scope="col">Image</th>
+            <th scope="col">Created</th>
+            <th scope="col">Tags</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key in content.keys() %}
+            <tr>
+                <td class="col-md-12 bg-light text-primary"><i>Resource Group,</i> <b>{{ key }}</b>
+                </td>
+            </tr>
+            {% for vm in content[key] %}
+                <tr>
+                    <td class="col-md-2"><i>{{ vm['name'] }}</i>, ({{ vm['status'] }})</td>
+                    <td class="col-md-1"><p
+                            class="text-center">{{ "<input type='checkbox' checked disabled>" if vm['details']["shared_image_gallery"] else "<input type='checkbox' disabled>" }}</p>
+                    </td>
+                    <td class="col-md-1 ">{{ vm['license'] or vm["os_disk"] }}</td>
+                    <td class="col-md-4">
+                        <i>Location</i>:&nbsp;<b>{{ vm["details"]["location"] }}</b><br/>
+                        <i>Publisher</i>:&nbsp;<b>{{ vm["details"]["publisher"] }}</b><br/>
+                        <i>SKU</i>:&nbsp;<b>{{ vm["details"]["sku"] }}</b><br/>
+                        <i>Offer</i>:&nbsp;<b>{{ vm["details"]["offer"] }}</b><br/>
+                        <i>Version</i>:&nbsp;<b>{{ vm["details"]["version"] }}</b>
+                    </td>
+                    <td class="col-md-2">{{ vm['details']["created"].strftime("%B %d, %Y") if "created" in vm['details'] }}</td>
+                    <td class="col-md-3">
+                        {% for tag in vm["tags"]|sort(case_sensitive=False) %}
+                            <i>{{ tag }}</i>:&nbsp;<b>{{ vm["tags"][tag] }}</b><br/>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

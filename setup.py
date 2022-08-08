@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import setuptools
 
-VERSION = "0.0.1"
+VERSION = "0.1.0"
 
 
 def readme():

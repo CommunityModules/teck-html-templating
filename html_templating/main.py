@@ -1,3 +1,5 @@
+from binhex import openrsrc
+from datetime import tzinfo, datetime
 import os
 import jinja2
 
@@ -6,13 +8,18 @@ J2 = jinja2.Environment(
 )
 
 TYPE_PUBLIC_IP_REPORT = "report_public_ip"
+TYPE_INDEX_PAGE = "report_index"
+TYPE_IMAGE_REPORT = "report_image"
 
 ALLOWED_TYPES = [{
-    'key': 'secops_instance_details',
-    'template_file': 'secops_instance_details.html'
-}, {
     "key": TYPE_PUBLIC_IP_REPORT,
     "template_file": "report_public_ip.html"
+}, {
+    "key": TYPE_INDEX_PAGE,
+    "template_file": "report_index.html"
+}, {
+    "key": TYPE_IMAGE_REPORT,
+    "template_file": "report_image.html"
 }]
 
 
@@ -39,22 +46,6 @@ def generate(template_type, data):
 
 
 def main():
-    example_struct = {
-        'content': {
-            'ssh_key': """-----BEGIN THIS IS NOT A KEY-----
-    HAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLOR
-    HAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLOR
-    HAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLOR
-    HAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLOR
-    HAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLORHAPPYJOESPIZZAPARLOR
-    -----END THIS IS NOT A KEY-----""",
-            'ip_address': '192.168.1.100',
-            'urls': {
-                'approve': 'https://example/?a=b&c=d',
-                'reject': 'https://example/?1=2&3=4',
-            }
-        }
-    }
     pip_struct = {
         "content": [{
             "location": "centralus",
@@ -73,7 +64,6 @@ def main():
         ]
     }
 
-    print(generate(template_type='secops_instance_details', data=example_struct['content']))
     result = generate(template_type=TYPE_PUBLIC_IP_REPORT, data=pip_struct['content'])
     print(result)
 
