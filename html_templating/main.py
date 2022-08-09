@@ -30,7 +30,6 @@ def get_template_types():
             template_types.append(obj["key"])
     return template_types
 
-
 def generate(template_type, data):
     _the_type = None
 

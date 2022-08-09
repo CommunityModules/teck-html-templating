@@ -1,14 +1,10 @@
 {% extends "templates/base.html" %}
 
 {% block message_body %}
-
-    <h1 class="display-3">Suncor Cloud Reports</h1>
-
+    <h1 class="display-3">Teck Cloud Reports</h1>
     {% if 'reports' in content %}
         {% for report in content['reports'] %}
-
             <h3>{{ report['name'] }}</h3>
-
             <table class="table table-bordered table-condensed table-striped">
                 <thead>
                 <tr>
@@ -38,5 +34,4 @@
     {% else %}
         <h1>No Reports</h1>
     {% endif %}
-
 {% endblock %}
